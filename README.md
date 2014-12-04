@@ -27,3 +27,4 @@ Env vars (default value shown)::
     -e DB_PORT=3306
 
     -e DOMAIN=hostname      # Sets all hostnames config, default: container hostname.
+    -e BASE_URL=http://hostname # default: http://{{DOMAIN}}

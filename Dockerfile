@@ -13,7 +13,7 @@ ADD genkeys.py /usr/local/bin/genkeys.py
 
 # Install drush
 RUN apt-get update && \
-    apt-get -y install php5-memcache memcached drush && \
+    apt-get -y install drush && \
     apt-get clean
     
 # Download drupal
@@ -23,7 +23,8 @@ RUN rm -rf /app/www && \
     drush dl drupal && \
     mv drupal-$drupal_version/* drupal-$drupal_version/.htaccess ./ && \
     rm -R drupal-$drupal_version && \
-    chown -R www-data:www-data /app/www/
+    mkdir sites/default/files && \
+    chown -R www-data:www-data /app/www/ 
 
 ADD settings.php.tpl  /root/
 ADD apache-vhost.conf.tpl  /root/

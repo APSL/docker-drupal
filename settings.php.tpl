@@ -277,7 +277,11 @@ $drupal_hash_salt = '{{ DRUPAL_HASH_SALT }}';
  * for you.
  */
  
-$base_url = 'http://{{DOMAIN}}';  // NO trailing slash!
+{% if BASE_URL is defined %}
+$base_url = '{{ BASE_URL }}';  // NO trailing slash!
+{% else %}
+$base_url = 'http://{{ DOMAIN }}';  // NO trailing slash!
+{% endif %}
 
 /**
  * PHP settings:
