@@ -213,7 +213,7 @@
  * @endcode
  */
  
-array(
+$databases['default']['default'] = array(
     'driver' => 'mysql',
     'database' => '{{ DATABASE_NAME |  default("drupaldb") }}',
     'username' => '{{ DATABASE_USER | default("drupaluser") }}',
