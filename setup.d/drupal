@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "--> drupal start script running.."
+# sets wp keys in env, if not defined
+# keys used by envtpl for sites/default/settings.php.tpl
+eval $(/usr/local/bin/genkeys.py DRUPAL_HASH_SALT)
+
+# Config files from templates with envtpl, using env vars
+echo "---> Configuring settings.php Drupal..."
+envtpl  -o  /app/www/sites/default/settings.php  --keep-template --allow-missing /root/settings.php.tpl
+echo "---> Configuring apache vhost drupal.conf..."
+envtpl  -o  /etc/apache2/sites-available/drupal.conf --keep-template --allow-missing /root/apache-vhost.conf.tpl
+a2ensite drupal
+
+echo "---> Changing permissions for settings.php..."
+chown www-data.www-data /app/www/sites/default/settings.php && chmod 666 /app/www/sites/default/settings.php

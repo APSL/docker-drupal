@@ -1,0 +1,28 @@
+web:
+    build: .
+    volumes:
+        - .:/code/src
+    ports:
+        - "8000:80"
+    environment:
+        CIRCUS_HTTPD: False
+        CIRCUS_STATSD: False
+        DATABASE_HOST: db_1
+        DATABASE_NAME: drupaldb
+        DATABASE_USER: drupaluser
+        DATABASE_PASSWORD: 1234
+        DEBUG: True
+        DOMAIN: "localhost:8000"
+    links:
+        - db:db
+
+db:
+    image: mysql
+    ports:
+        - 3306
+    environment:
+        MYSQL_ROOT_PASSWORD: 1234
+        MYSQL_DATABASE: drupaldb
+        MYSQL_USER: drupaluser
+        MYSQL_PASSWORD: 1234
+ 
