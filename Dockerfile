@@ -20,11 +20,11 @@ RUN apt-get update && \
 RUN rm -rf /app/www && \
     mkdir /app/www && \
     cd /app/www && \
-    drush dl drupal && \
+    drush dl drupal-$drupal_version && \
     mv drupal-$drupal_version/* drupal-$drupal_version/.htaccess ./ && \
     rm -R drupal-$drupal_version && \
     mkdir sites/default/files && \
-    chown -R www-data:www-data /app/www/ 
+    chown -R www-data:www-data /app/www/
 
 ADD settings.php.tpl  /root/
 ADD apache-vhost.conf.tpl  /root/
