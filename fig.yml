@@ -1,7 +1,5 @@
 web:
     build: .
-    volumes:
-        - .:/code/src
     ports:
         - "8000:80"
     environment:
@@ -15,7 +13,6 @@ web:
         DOMAIN: "localhost:8000"
     links:
         - db:db
-
 db:
     image: mysql
     ports:
