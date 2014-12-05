@@ -12,4 +12,6 @@ echo "---> Configuring apache vhost drupal.conf..."
 envtpl  -o  /etc/apache2/sites-available/drupal.conf --keep-template --allow-missing /root/apache-vhost.conf.tpl
 a2ensite drupal
 echo "---> Changing permissions for settings.php..."
-chown www-data.www-data /app/www/sites/default/settings.php && chmod 666 /app/www/sites/default/settings.php
+chown -R www-data.www-data /app/www  && chmod 666 /app/www/sites/default/settings.php
+echo "---> Executing drupal hooks..."
+/usr/local/bin/hooks.sh

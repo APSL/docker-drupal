@@ -11,6 +11,9 @@ RUN \
 # genkeys for wp key gen
 ADD genkeys.py /usr/local/bin/genkeys.py
 
+# drupal hooks file
+ADD hooks.sh /usr/local/bin/hooks.sh
+
 # Install drush
 RUN apt-get update && \
     apt-get -y install drush && \
