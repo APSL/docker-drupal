@@ -20,11 +20,11 @@ As an example of envtpl, circus.ini itself is managed with envtpl
 
 Env vars (default value shown)::
 
-    -e DB_NAME=drupaldb
-    -e DB_USER=drupaluser
-    -e DB_PASSWORD=1234
-    -e DB_HOST=172.17.42.1
-    -e DB_PORT=3306
+    -e DATABASE_NAME=drupaldb
+    -e DATABASE_USER=drupaluser
+    -e DATABASE_PASSWORD=1234
+    -e DATABASE_HOST=172.17.42.1
+    -e DATABASE_PORT=3306
 
     -e DOMAIN=hostname      # Sets all hostnames config, default: container hostname.
     -e BASE_URL=http://hostname # default: http://{{DOMAIN}}
