@@ -3,6 +3,9 @@
     ServerName {{ DOMAIN | default("localhost") }}
     ErrorLog /app/logs/drupal-error.log
     CustomLog /app/logs/drupal-access.log common
+    {% if URL_PREFIX  %}
+    Alias {{URL_PREFIX}} /app/www
+    {% endif %}
 
     <Directory /app/www>
         Options  Indexes FollowSymLinks MultiViews

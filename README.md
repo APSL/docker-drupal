@@ -26,5 +26,11 @@ Env vars (default value shown)::
     -e DATABASE_HOST=172.17.42.1
     -e DATABASE_PORT=3306
 
-    -e DOMAIN=hostname      # Sets all hostnames config, default: container hostname.
-    -e BASE_URL=http://hostname # default: http://{{DOMAIN}}
+    -e DOMAIN=localhost    # Sets all hostnames config, default: container hostname.
+    -e PROTO=http
+    -e URL_PREFIX          # Default empty. If defined, must begin (but not end) with "/".
+                           # example:  -e URL_PREFIX=/mydrupal
+
+    # base_url drupal setting will be: {{PROTO}}://{{DOMAIN}}{{URL_PREFIX}}
+    
+
