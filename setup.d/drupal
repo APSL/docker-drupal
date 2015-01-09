@@ -11,6 +11,12 @@ envtpl  -o  /app/www/sites/default/settings.php  --keep-template --allow-missing
 echo "---> Configuring apache vhost drupal.conf..."
 envtpl  -o  /etc/apache2/sites-available/drupal.conf --keep-template --allow-missing /root/apache-vhost.conf.tpl
 a2ensite drupal
+
+if [[ -n "$URL_PREFIX" ]]; then
+    echo "---> configuring .htaccess for url_prefix $URL_PREFIX..."
+    sed -i "s|# RewriteBase /drupal|RewriteBase $URL_PREFIX|" /app/www/.htaccess ;\
+fi
+
 echo "---> Changing permissions for settings.php..."
 chown -R www-data.www-data /app/www  && chmod 666 /app/www/sites/default/settings.php
 echo "---> Executing drupal hooks..."
