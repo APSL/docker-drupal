@@ -84,7 +84,7 @@ $conf['file_default_scheme'] = "s3";
 {% if REDIS_HOST is defined %}
 $conf['redis_client_interface'] = 'PhpRedis';
 
-$conf['redis_client_host'] = '{{ REDIS_HOST | default('172.17.42.1') }}';
+$conf['redis_client_host'] = '{{ REDIS_HOST | default("172.17.42.1") }}';
 $conf['redis_client_port'] = {{ REDIS_PORT | default("6379") }};
 $conf['redis_client_base'] = {{ REDIS_DB | default("1") }};
 $conf['cache_prefix'] = '{{ REDIS_CACHE_PREFIX | default("mob_") }}';
