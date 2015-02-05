@@ -73,3 +73,27 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
 # Disable for green in status report
 $conf['drupal_http_request_fails'] = FALSE;
 
+$conf['awssdk2_access_key'] = '{{ AWS_KEY |  default("") }}';
+$conf['awssdk2_secret_key'] = '{{ AWS_SECRET |  default("") }}';
+
+$conf['s3fs_bucket'] = '{{ S3FS_BUCKET |  default("") }}';
+$conf['file_default_scheme'] = "s3";
+
+
+# Redis cache
+{% if REDIS_HOST is defined %}
+$conf['redis_client_interface'] = 'PhpRedis';
+
+$conf['redis_client_host'] = '{{ REDIS_HOST | default('127.0.0.10) }}';
+$conf['redis_client_port'] = {{ REDIS_PORT | default("1234") }};
+$conf['redis_client_base'] = {{ REDIS_DB | default("12") }};
+$conf['cache_prefix'] = '{{ REDIS_CACHE_PREFIX | default("mob_") }}';
+
+$conf['lock_inc'] = 'sites/all/modules/redis/redis.lock.inc';
+$conf['path_inc'] = 'sites/all/modules/redis/redis.path.inc';
+$conf['cache_backends'][] = 'sites/all/modules/redis/redis.autoload.inc';
+$conf['cache_default_class'] = 'Redis_Cache';
+{% else %}
+// Warning: no REDIS_HOST envvar found
+{% endif %}
+

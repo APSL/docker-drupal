@@ -14,10 +14,12 @@ ADD genkeys.py /usr/local/bin/genkeys.py
 # drupal hooks file
 ADD hooks.sh /usr/local/bin/hooks.sh
 
-# Install drush
+# Install drush, php redis
 RUN apt-get update && \
-    apt-get -y install drush && \
+    apt-get -y install drush php5-redis && \
     apt-get clean
+
+RUN /usr/sbin/php5enmod redis
     
 # Download drupal
 RUN rm -rf /app/www && \
